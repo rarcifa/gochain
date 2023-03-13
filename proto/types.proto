@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option go_package = "github.com/rarcifa/gochain/proto";
+
+// types
+message Block {
+	Header header = 1;
+	repeated Transaction transactions = 2;
+}
+
+message Header {
+	int32 version = 1;
+	int32 height = 2;
+	bytes prevHash = 3;
+	bytes rootHash = 4; // merkle root of txs
+	int64 timestamp = 5;
+}
+
+message TxInput {
+	// the previous hash of the tx containing
+	// the output we want to spend.
+	bytes prevTxHash = 1;
+	// index of the output of the previous ts
+	// we want to spend.
+	uint32 prevOutIndex = 2;
+	bytes publicKey = 3;
+	bytes signature = 4;
+}
+
+message TxOutput {
+	int64 amount = 1;
+	bytes address = 2;
+}
+
+message Transaction {
+	int32 version = 1;
+	repeated TxInput input = 2;
+	repeated TxOutput output = 3;
+}

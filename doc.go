@@ -1,7 +1,6 @@
 package main
 
 // BLOCKER
-//
 // - ED25519 crypto
 // - UTXO model
 // - Protobuffer encoding
